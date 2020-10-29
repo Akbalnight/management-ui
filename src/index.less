@@ -1,0 +1,35 @@
+@import '~antd/dist/antd';
+@import '~mobile-inspections-base-ui/dist/index';
+@import '~rt-design/dist/index';
+
+@import "constants/variables";
+
+#root {
+	height: 100vh;
+}
+
+
+.SplitPane {
+	position: static !important;
+	display: flex;
+	.Pane {
+		display: flex;
+		overflow-x: hidden;
+	}
+	.Resizer.vertical {
+		width: 4px;
+		background: #9c9ea1;
+		&:hover {
+			cursor: col-resize;
+			//background: red;
+		}
+	}
+}
+
+.mb-0{
+	margin-bottom: 0px;
+}
+
+.mb-8{
+	margin-bottom: 8px;
+}
