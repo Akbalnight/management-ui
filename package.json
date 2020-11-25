@@ -1,5 +1,5 @@
 {
-  "name": "base-management-ui",
+  "name": "management-ui",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,7 +7,7 @@
     "axios": "^0.21.0",
     "cookie": "^0.4.1",
     "js-sha256": "^0.9.0",
-    "mobile-inspections-base-ui": "git+https://robot:qhp-8Yy-9z6-hv3@atlassian.dias-dev.ru/bitbucket/scm/mobinspect/mobile-inspections-base-ui.git#semver:^0.0.3",
+    "mobile-inspections-base-ui": "git+https://robot:qhp-8Yy-9z6-hv3@atlassian.dias-dev.ru/bitbucket/scm/mobinspect/mobile-inspections-base-ui.git#semver:^0.0.11",
     "moment": "^2.29.1",
     "object-path": "^0.11.5",
     "prop-types": "^15.7.2",
@@ -22,7 +22,7 @@
     "react-stomp": "^5.0.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "rt-design": "git+https://github.com/air-tech/react-tech-design.git#semver:0.0.34"
+    "rt-design": "git+https://github.com/air-tech/react-tech-design.git#semver:0.0.48"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^2.34.0",

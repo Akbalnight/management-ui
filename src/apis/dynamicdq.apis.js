@@ -87,3 +87,16 @@ export const apiDataGetByConfigName = ({config, data, params}) => {
 		params,
 	});
 };
+
+/** SAVE DATA API */
+export const apiSaveDataByConfigName = (configName) => ({
+	method,
+	data,
+	params,
+}) =>
+	genericRequest({
+		url: `${prefixGetData}/save/${configName}`,
+		method: method,
+		data,
+		params,
+	});

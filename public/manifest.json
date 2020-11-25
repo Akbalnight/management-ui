@@ -1,6 +1,6 @@
 {
-  "short_name": "Base Management UI",
-  "name": "Base Management UI",
+  "short_name": "Management UI",
+  "name": "Management UI",
   "icons": [
     {
       "src": "favicon.ico",

@@ -2,52 +2,13 @@ import React from 'react';
 import {BasePage} from 'mobile-inspections-base-ui';
 import {Form} from 'rt-design';
 import {useHistory} from 'react-router';
-import {Checkbox, Tooltip, Typography} from 'antd';
 import {
 	apiGetConfigurationByName,
 	apiGetFlatDataByConfigName,
 } from '../../apis/dynamicdq.apis';
 
-const Users = () => {
+const Roles = () => {
 	let history = useHistory();
-
-	const customColumnProps = [
-		{
-			name: 'enabled',
-			cellRenderer: ({cellData}) => (
-				<Checkbox checked={cellData} disabled />
-			),
-		},
-		{
-			name: 'ldap',
-			cellRenderer: ({cellData}) => (
-				<Checkbox checked={cellData} disabled />
-			),
-		},
-		{
-			name: 'roles',
-			cellRenderer: ({cellData}) => {
-				const roles = cellData ? JSON.parse(cellData) : [];
-				return (
-					<Tooltip
-						title={roles.map((item) => (
-							<div key={item.role}>{item.role}</div>
-						))}
-					>
-						<Typography.Text>
-							{roles.map((item) => item.role).join(', ')}
-						</Typography.Text>
-					</Tooltip>
-				);
-			},
-		},
-	];
-
-	//id
-	// description
-	// method
-	// path
-	// json_data
 
 	const formConfig = {
 		noPadding: true,
@@ -59,8 +20,8 @@ const Users = () => {
 						componentType: 'Item',
 						child: {
 							componentType: 'ServerTable',
-							rowKey: 'userId',
-							customColumnProps: customColumnProps,
+							rowKey: 'name',
+							// customColumnProps: customColumnProps,
 							// Подключение таблицы к react-router
 							// Т.к. мы используем actionType: 'page' для кнопки создани и редактирвоания тех. карты
 							// Нам требуется дать таблице инструмет для перехода по ссылкам
@@ -68,12 +29,12 @@ const Users = () => {
 
 							// Получение иерархичной таблицы по имени конфигурации
 							requestLoadRows: apiGetFlatDataByConfigName(
-								'users'
+								'roles'
 							),
 
 							// Получение конфигурации по имени
 							requestLoadConfig: apiGetConfigurationByName(
-								'users'
+								'roles'
 							),
 
 							// В примере #2 будет описан вот этот объект
@@ -97,6 +58,6 @@ const Users = () => {
 	);
 };
 
-Users.propTypes = {};
+Roles.propTypes = {};
 
-export default Users;
+export default Roles;

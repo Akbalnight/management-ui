@@ -1,4 +1,9 @@
-import {HomeOutlined, BugOutlined, UserOutlined} from '@ant-design/icons';
+import {
+	HomeOutlined,
+	UserOutlined,
+	TeamOutlined,
+	SafetyOutlined,
+} from '@ant-design/icons';
 
 import {paths} from './paths';
 
@@ -8,11 +13,15 @@ export const menu = [
 		icon: HomeOutlined,
 	},
 	{
-		...paths.DEBUG_LIB,
-		icon: BugOutlined,
-	},
-	{
 		...paths.USERS,
 		icon: UserOutlined,
+	},
+	{
+		...paths.ROLES,
+		icon: TeamOutlined,
+	},
+	{
+		...paths.PERMISSIONS,
+		icon: SafetyOutlined,
 	},
 ];
