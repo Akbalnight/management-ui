@@ -25,17 +25,17 @@ const Users = () => {
 			),
 		},
 		{
-			name: 'roles',
+			name: 'rolesForRegistry',
 			cellRenderer: ({cellData}) => {
 				const roles = cellData ? JSON.parse(cellData) : [];
 				return (
 					<Tooltip
 						title={roles.map((item) => (
-							<div key={item.role}>{item.role}</div>
+							<div key={item.name}>{item.name}</div>
 						))}
 					>
 						<Typography.Text>
-							{roles.map((item) => item.role).join(', ')}
+							{roles.map((item) => item.name).join(', ')}
 						</Typography.Text>
 					</Tooltip>
 				);
@@ -59,24 +59,14 @@ const Users = () => {
 						componentType: 'Item',
 						child: {
 							componentType: 'ServerTable',
-							rowKey: 'userId',
 							customColumnProps: customColumnProps,
-							// Подключение таблицы к react-router
-							// Т.к. мы используем actionType: 'page' для кнопки создани и редактирвоания тех. карты
-							// Нам требуется дать таблице инструмет для перехода по ссылкам
 							history,
-
-							// Получение иерархичной таблицы по имени конфигурации
 							requestLoadRows: apiGetFlatDataByConfigName(
 								'users'
 							),
-
-							// Получение конфигурации по имени
 							requestLoadConfig: apiGetConfigurationByName(
 								'users'
 							),
-
-							// В примере #2 будет описан вот этот объект
 							commandPanelProps: {
 								systemBtnProps: {
 									add: {actionType: 'page'},

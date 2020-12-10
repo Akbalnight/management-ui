@@ -1,12 +1,14 @@
 import {apiSaveDataByConfigName} from '../../apis/dynamicdq.apis';
 
 export const changePasswordModal = {
+	type: 'editOnServer',
 	title: 'Смена пароля',
 	requestSaveRow: apiSaveDataByConfigName('setPassword'),
 	width: 550,
 	form: {
 		labelCol: {span: 8},
 		wrapperCol: {span: 16},
+		loadInitData: (callBack, row) => callBack(row),
 		body: [
 			{
 				componentType: 'Item',

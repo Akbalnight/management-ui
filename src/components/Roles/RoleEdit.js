@@ -9,6 +9,7 @@ import {
 	apiGetConfigurationByName,
 } from '../../apis/dynamicdq.apis';
 import {notification} from 'antd';
+import {uuid} from '../../utils/baseUtils';
 
 const RoleEdit = () => {
 	const pageParams = useParams();
@@ -19,7 +20,7 @@ const RoleEdit = () => {
 			callBack({});
 		} else {
 			apiGetFlatDataByConfigName('roles')({
-				data: {role: pageParams.id},
+				data: {id: pageParams.id},
 			})
 				.then((response) => {
 					// console.log("loadData => response ", response.data);
@@ -47,7 +48,7 @@ const RoleEdit = () => {
 	const loadPermissions = ({params, data}) => {
 		const newData = {
 			...data,
-			role: pageParams.id === 'new' ? null : pageParams.id,
+			roleId: pageParams.id === 'new' ? uuid() : pageParams.id,
 		};
 		return apiGetFlatDataByConfigName('rolePermissions')({
 			data: newData,
@@ -134,7 +135,7 @@ const RoleEdit = () => {
 					name: 'permissions',
 					child: {
 						componentType: 'LocalTable',
-						rowKey: 'idPermission',
+						rowKey: 'permissionId',
 						selectable: true,
 						history,
 

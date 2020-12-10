@@ -10,6 +10,7 @@ import {
 } from '../../apis/dynamicdq.apis';
 import {notification} from 'antd';
 import {changePasswordModal} from './changePasswordModal';
+import {uuid} from '../../utils/baseUtils';
 
 const UserEdit = () => {
 	const pageParams = useParams();
@@ -28,8 +29,9 @@ const UserEdit = () => {
 					let data = response.data[0];
 					data.jsonData = JSON.parse(response.data[0].jsonData);
 					data.roles = JSON.parse(response.data[0].roles); // response.data[0].roles.split(', ');
+					// if(data.roles.length > 0) data.roles.map(item)
 
-					setUsername(data.username);
+					setUsername(data.id);
 					console.log('loadData => data ', data);
 					callBack(data);
 				})
@@ -48,14 +50,16 @@ const UserEdit = () => {
 	};
 
 	const loadRoles = ({params, data}) => {
+		// if(pageParams.id !== 'new') {
 		const newData = {
 			...data,
-			userId: pageParams.id === 'new' ? null : pageParams.id,
+			userId: pageParams.id === 'new' ? uuid() : pageParams.id,
 		};
 		return apiGetFlatDataByConfigName('userRoles')({
 			data: newData,
 			params,
 		});
+		// }
 	};
 
 	const processBeforeSaveForm = (rawValues) => {
@@ -102,7 +106,8 @@ const UserEdit = () => {
 					componentType: 'Modal',
 					buttonProps: {label: 'Сменить пароль'},
 					modalConfig: changePasswordModal,
-					selectedRow: {username: username},
+					modalData: {id: username},
+					// dispatchPath: 'changePasswordModal'
 				},
 			},
 		],
@@ -137,7 +142,6 @@ const UserEdit = () => {
 							],
 							child: {
 								componentType: 'Input',
-								disabled: pageParams.id !== 'new',
 							},
 						},
 					],
@@ -271,7 +275,7 @@ const UserEdit = () => {
 					name: 'roles',
 					child: {
 						componentType: 'LocalTable',
-						rowKey: 'role',
+						rowKey: 'roleId',
 						selectable: true,
 						history,
 
@@ -299,7 +303,7 @@ const UserEdit = () => {
 
 	const onFinish = (values) => {
 		// console.log("onFinish", values);
-		history.push(paths.USERS.path);
+		// history.push(paths.USERS.path);
 	};
 
 	const formConfig = {

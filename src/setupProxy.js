@@ -2,9 +2,10 @@ const {createProxyMiddleware} = require('http-proxy-middleware');
 
 // const API_URL = 'https://mobinspect.dias-dev.ru';
 const API_URL = 'http://10.5.121.117';
-
 const OAUTH_URL = 'https://oauth.dias-dev.ru';
-const LOCAL_API_URL = 'http://localhost';
+
+// const LOCAL_OAUTH_URL = 'http://localhost:8809';
+// const LOCAL_API_URL = 'http://localhost';
 
 // http://localhost:8080/configurable/configuration/getAll
 
@@ -27,7 +28,7 @@ module.exports = function (app) {
 	app.use(
 		'/api/management',
 		createProxyMiddleware({
-			target: `${LOCAL_API_URL}:8807/management`,
+			target: `${API_URL}:8807/management`,
 			pathRewrite: {'^/api/management': ''},
 		})
 	);

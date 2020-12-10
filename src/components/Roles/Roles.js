@@ -20,24 +20,13 @@ const Roles = () => {
 						componentType: 'Item',
 						child: {
 							componentType: 'ServerTable',
-							rowKey: 'name',
-							// customColumnProps: customColumnProps,
-							// Подключение таблицы к react-router
-							// Т.к. мы используем actionType: 'page' для кнопки создани и редактирвоания тех. карты
-							// Нам требуется дать таблице инструмет для перехода по ссылкам
 							history,
-
-							// Получение иерархичной таблицы по имени конфигурации
 							requestLoadRows: apiGetFlatDataByConfigName(
 								'roles'
 							),
-
-							// Получение конфигурации по имени
 							requestLoadConfig: apiGetConfigurationByName(
 								'roles'
 							),
-
-							// В примере #2 будет описан вот этот объект
 							commandPanelProps: {
 								systemBtnProps: {
 									add: {actionType: 'page'},
